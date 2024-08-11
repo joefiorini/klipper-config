@@ -1,0 +1,731 @@
+-------------------- Log Start | Sun Aug 11 19:57:37 2024 --------------------
+platform: Linux-5.10.103-v7l+-armv7l-with-glibc2.31
+data_path: /home/nozzle/mikasa_data
+is_default_data_path: False
+config_file: /home/nozzle/mikasa_data/config/moonraker.conf
+backup_config: None
+startup_warnings: []
+verbose: False
+debug: False
+asyncio_debug: False
+is_backup_config: False
+is_python_package: False
+instance_uuid: 89df884c36f140d6bc07d8120f6b0551
+unix_socket_path: /home/nozzle/mikasa_data/comms/moonraker.sock
+software_version: v0.9.2-6-gf735c04
+git_branch: master
+git_remote: origin
+git_repo_url: https://github.com/Arksine/moonraker.git
+modified_files: []
+unofficial_components: []
+log_file: /home/nozzle/mikasa_data/logs/moonraker.log
+python_version: 3.9.2 (default, Mar 12 2021, 04:06:34)  [GCC 10.2.1 20210110]
+launch_args: /home/nozzle/moonraker-env/bin/python /home/nozzle/moonraker/moonraker/moonraker.py -d /home/nozzle/mikasa_data
+msgspec_enabled: False
+uvloop_enabled: False
+2024-08-11 15:57:37,060 [confighelper.py:read_file()] - Configuration File '/home/nozzle/mikasa_data/config/moonraker.conf' parsed, total size: 449 B
+2024-08-11 15:57:37,060 [server.py:add_log_rollover_item()] - 
+#################### Moonraker Configuration ####################
+
+[server]
+host = 0.0.0.0
+port = 7126
+klippy_uds_address = /home/nozzle/mikasa_data/comms/klippy.sock
+
+[authorization]
+trusted_clients = 
+	10.0.0.0/8
+	127.0.0.0/8
+	169.254.0.0/16
+	172.16.0.0/12
+	192.168.0.0/16
+	FE80::/10
+	::1/128
+cors_domains = 
+	*.lan
+	*.local
+	*://localhost
+	*://localhost:*
+	*://my.mainsail.xyz
+	*://app.fluidd.xyz
+
+[octoprint_compat]
+
+[history]
+
+[update_manager]
+channel = dev
+refresh_interval = 168
+
+#################################################################
+All Configuration Files:
+/home/nozzle/mikasa_data/config/moonraker.conf
+#################################################################
+2024-08-11 15:57:37,194 [server.py:load_component()] - Component (secrets) loaded
+2024-08-11 15:57:37,201 [server.py:load_component()] - Component (template) loaded
+2024-08-11 15:57:37,213 [server.py:load_component()] - Component (klippy_connection) loaded
+2024-08-11 15:57:37,714 [server.py:load_component()] - Component (application) loaded
+2024-08-11 15:57:37,754 [server.py:load_component()] - Component (websockets) loaded
+2024-08-11 15:57:37,820 [server.py:add_log_rollover_item()] - Loading Sqlite database provider. Sqlite Version: 3.34.1
+2024-08-11 15:57:38,569 [server.py:add_log_rollover_item()] - Created default SQL table namespace_store
+2024-08-11 15:57:38,592 [server.py:add_log_rollover_item()] - Unsafe Shutdown Count: 0
+2024-08-11 15:57:38,614 [server.py:load_component()] - Component (database) loaded
+2024-08-11 15:57:38,667 [server.py:load_component()] - Component (dbus_manager) loaded
+2024-08-11 15:57:38,789 [file_manager.py:__init__()] - Using File System Observer: inotify
+2024-08-11 15:57:38,815 [server.py:load_component()] - Component (file_manager) loaded
+2024-08-11 15:57:38,861 [database.py:register_table()] - Creating table authorized_users...
+2024-08-11 15:57:38,930 [authorization.py:__init__()] - Authorization Configuration Loaded
+Trusted Clients:
+10.0.0.0/8
+127.0.0.0/8
+169.254.0.0/16
+172.16.0.0/12
+192.168.0.0/16
+fe80::/10
+::1/128
+CORS Domains:
+.*\.lan
+.*\.local
+.*://localhost
+.*://localhost:.*
+.*://my\.mainsail\.xyz
+.*://app\.fluidd\.xyz
+2024-08-11 15:57:38,937 [server.py:load_component()] - Component (authorization) loaded
+2024-08-11 15:57:38,957 [server.py:load_component()] - Component (klippy_apis) loaded
+2024-08-11 15:57:39,301 [server.py:add_log_rollover_item()] - 
+System Info:
+
+***python***
+  version: (3, 9, 2, 'final', 0)
+  version_string: 3.9.2 (default, Mar 12 2021, 04:06:34)  [GCC 10.2.1 20210110]
+
+***cpu_info***
+  cpu_count: 4
+  bits: 32bit
+  processor: armv7l
+  cpu_desc: ARMv7 Processor rev 3 (v7l)
+  serial_number: 1000000067d0b673
+  hardware_desc: BCM2711
+  model: Raspberry Pi 4 Model B Rev 1.2
+  total_memory: 1864328
+  memory_units: kB
+
+***sd_info***
+  manufacturer_id: 03
+  manufacturer: Sandisk
+  oem_id: 5344
+  product_name: SC128
+  product_revision: 8.0
+  serial_number: e1113d5a
+  manufacturer_date: 11/2020
+  capacity: 119.1 GiB
+  total_bytes: 127865454592
+
+***distribution***
+  name: Raspbian GNU/Linux 11 (bullseye)
+  id: raspbian
+  version: 11
+  version_parts: {'major': '11', 'minor': '', 'build_number': ''}
+  like: debian
+  codename: bullseye
+  release_info: {}
+  kernel_version: 5.10.103-v7l+
+
+***virtualization***
+  virt_type: none
+  virt_identifier: none
+
+***network***
+
+***canbus***
+
+***Allowed Services***
+  klipper_mcu
+  webcamd
+  MoonCord
+  KlipperScreen
+  moonraker-telegram-bot
+  moonraker-obico
+  sonar
+  crowsnest
+  octoeverywhere
+  ratos-configurator
+2024-08-11 15:57:39,305 [server.py:load_component()] - Component (shell_command) loaded
+2024-08-11 15:57:39,305 [machine.py:__init__()] - Using System Provider: systemd_dbus
+2024-08-11 15:57:39,319 [server.py:add_log_rollover_item()] - Module libcamera unavailble, import failed
+2024-08-11 15:57:39,319 [server.py:load_component()] - Component (machine) loaded
+2024-08-11 15:57:39,332 [server.py:load_component()] - Component (data_store) loaded
+2024-08-11 15:57:39,348 [proc_stats.py:__init__()] - Detected 'vcgencmd', throttle checking enabled
+2024-08-11 15:57:39,350 [server.py:load_component()] - Component (proc_stats) loaded
+2024-08-11 15:57:39,354 [server.py:load_component()] - Component (job_state) loaded
+2024-08-11 15:57:39,371 [server.py:load_component()] - Component (job_queue) loaded
+2024-08-11 15:57:39,395 [database.py:register_table()] - Creating table job_history...
+2024-08-11 15:57:39,443 [database.py:register_table()] - Creating table job_totals...
+2024-08-11 15:57:39,474 [history.py:migrate()] - Migrating history totals from moonraker namespace...
+2024-08-11 15:57:39,520 [server.py:load_component()] - Component (history) loaded
+2024-08-11 15:57:39,544 [server.py:load_component()] - Component (http_client) loaded
+2024-08-11 15:57:39,584 [server.py:load_component()] - Component (announcements) loaded
+2024-08-11 15:57:39,607 [server.py:load_component()] - Component (webcam) loaded
+2024-08-11 15:57:39,611 [server.py:load_component()] - Component (extensions) loaded
+2024-08-11 15:57:39,627 [server.py:load_component()] - Component (octoprint_compat) loaded
+2024-08-11 15:57:39,862 [base_deploy.py:log_info()] - Git Repo moonraker: Detected virtualenv: /home/nozzle/moonraker-env
+2024-08-11 15:57:39,866 [base_deploy.py:log_info()] - Git Repo klipper: Detected virtualenv: /home/nozzle/klippy-env
+2024-08-11 15:57:39,876 [server.py:load_component()] - Component (update_manager) loaded
+2024-08-11 15:57:39,877 [server.py:_initialize_component()] - Performing Component Post Init: [database]
+2024-08-11 15:57:39,908 [server.py:_initialize_component()] - Performing Component Post Init: [dbus_manager]
+2024-08-11 15:57:39,926 [server.py:_initialize_component()] - Performing Component Post Init: [file_manager]
+2024-08-11 15:57:39,927 [server.py:_initialize_component()] - Performing Component Post Init: [authorization]
+2024-08-11 15:57:39,931 [server.py:_initialize_component()] - Performing Component Post Init: [machine]
+2024-08-11 15:57:39,936 [machine.py:update_usb_ids()] - Fetching latest usb.ids file...
+2024-08-11 15:57:39,957 [machine.py:validation_init()] - Installation version in database up to date
+2024-08-11 15:57:40,353 [machine.py:check_virt_status()] - No Virtualization Detected
+2024-08-11 15:57:40,372 [machine.py:_find_public_ip()] - Detected Local IP: 192.168.1.6
+2024-08-11 15:57:40,375 [webcam.py:_set_default_host_ip()] - Default public webcam address set: http://192.168.1.6
+2024-08-11 15:57:40,425 [machine.py:extract_service_info()] - Detected alternate unit name for moonraker: moonraker-mikasa.service
+2024-08-11 15:57:40,459 [server.py:add_log_rollover_item()] - 
+Systemd unit moonraker-mikasa.service:
+unit_name: moonraker-mikasa.service
+is_default: False
+manager: systemd
+Properties:
+**Requires=['sysinit.target', '-.mount', 'system.slice', 'network-online.target']
+**After=['-.mount', 'basic.target', 'sysinit.target', 'systemd-journald.socket', 'system.slice', 'network-online.target']
+**SupplementaryGroups=['moonraker-admin']
+**EnvironmentFiles=/home/nozzle/mikasa_data/systemd/moonraker.env
+**ExecStart=/home/nozzle/moonraker-env/bin/python $MOONRAKER_ARGS
+**WorkingDirectory=/home/nozzle/moonraker
+**FragmentPath=/etc/systemd/system/moonraker-mikasa.service
+**Description=API Server for Klipper SV1 mikasa
+**User=nozzle
+2024-08-11 15:57:40,459 [server.py:_initialize_component()] - Performing Component Post Init: [proc_stats]
+2024-08-11 15:57:40,459 [server.py:_initialize_component()] - Performing Component Post Init: [history]
+2024-08-11 15:57:40,466 [server.py:_initialize_component()] - Performing Component Post Init: [announcements]
+2024-08-11 15:57:40,476 [server.py:_initialize_component()] - Performing Component Post Init: [webcam]
+2024-08-11 15:57:40,476 [webcam.py:_set_default_host_ip()] - Default public webcam address set: http://192.168.1.6
+2024-08-11 15:57:40,481 [server.py:_initialize_component()] - Performing Component Post Init: [klippy_connection]
+2024-08-11 15:57:40,481 [server.py:_initialize_component()] - Performing Component Post Init: [update_manager]
+2024-08-11 15:57:40,565 [base_deploy.py:log_info()] - PackageDeploy: PackageKit Provider Configured
+2024-08-11 15:57:40,573 [confighelper.py:create_backup()] - Backing up last working configuration to '/home/nozzle/mikasa_data/config/.moonraker.conf.bkp'
+2024-08-11 15:57:40,584 [extensions.py:start_unix_server()] - Creating Unix Domain Socket at '/home/nozzle/mikasa_data/comms/moonraker.sock'
+2024-08-11 15:57:40,586 [server.py:start_server()] - Starting Moonraker on (0.0.0.0, 7126), Hostname: printfarm
+2024-08-11 15:57:40,588 [application.py:listen()] - SSL Certificate/Key not configured, aborting HTTPS Server startup
+2024-08-11 15:57:40,846 [klippy_connection.py:_do_connect()] - Klippy Connection Established
+2024-08-11 15:57:40,906 [machine.py:extract_service_info()] - Detected alternate unit name for klipper: klipper-mikasa.service
+2024-08-11 15:57:40,942 [machine.py:update_usb_ids()] - Writing usb.ids file...
+2024-08-11 15:57:40,952 [server.py:add_log_rollover_item()] - 
+Systemd unit klipper-mikasa.service:
+unit_name: klipper-mikasa.service
+is_default: False
+manager: systemd
+Properties:
+**Requires=['system.slice', '-.mount', 'sysinit.target']
+**After=['systemd-journald.socket', '-.mount', 'system.slice', 'network-online.target', 'sysinit.target', 'basic.target']
+**SupplementaryGroups=[]
+**EnvironmentFiles=/home/nozzle/mikasa_data/systemd/klipper.env
+**ExecStart=/home/nozzle/klippy-env/bin/python $KLIPPER_ARGS
+**WorkingDirectory=/home/nozzle/klipper
+**FragmentPath=/etc/systemd/system/klipper-mikasa.service
+**Description=Klipper 3D Printer Firmware SV1
+**User=nozzle
+2024-08-11 15:57:41,206 [server.py:add_log_rollover_item()] - Klipper Version: v0.12.0-276-gca815f52
+2024-08-11 15:57:42,141 [base_deploy.py:log_info()] - PackageKit: Detected 52 package updates:
+base-files
+bind9-host
+bind9-libs
+distro-info-data
+dns-root-data
+ffmpeg
+gir1.2-gdkpixbuf-2.0
+hostapd
+libavcodec58
+libavdevice58
+libavfilter7
+libavformat58
+libavresample4
+libavutil56
+libcurl3-gnutls
+libgdk-pixbuf-2.0-0
+libgdk-pixbuf2.0-bin
+libgdk-pixbuf2.0-common
+libglib2.0-0
+libglib2.0-bin
+libglib2.0-data
+libglib2.0-dev
+libglib2.0-dev-bin
+libgnutls30
+libgssapi-krb5-2
+libimlib2
+libk5crypto3
+libkrb5-3
+libkrb5support0
+libpam-systemd
+libpostproc55
+libqt5core5a
+libqt5dbus5
+libqt5gui5
+libqt5network5
+libqt5printsupport5
+libqt5widgets5
+libssh2-1
+libswresample3
+libswscale5
+libsystemd-dev
+libsystemd0
+libudev1
+libvpx6
+nano
+python3-idna
+qt5-gtk-platformtheme
+systemd
+systemd-sysv
+systemd-timesyncd
+udev
+wpasupplicant
+2024-08-11 15:57:42,166 [shell_command.py:_check_proc_success()] - Command (git -C /home/nozzle/moonraker status --porcelain -b) successfully finished
+2024-08-11 15:57:42,188 [shell_command.py:_check_proc_success()] - Command (git -C /home/nozzle/moonraker branch --list --no-color) successfully finished
+2024-08-11 15:57:42,232 [shell_command.py:_check_proc_success()] - Command (git -C /home/nozzle/moonraker remote get-url origin) successfully finished
+2024-08-11 15:57:42,675 [shell_command.py:_check_proc_success()] - Command (git -C /home/nozzle/moonraker fetch origin --prune --progress) successfully finished
+2024-08-11 15:57:42,693 [shell_command.py:_check_proc_success()] - Command (git -C /home/nozzle/moonraker merge-base --is-ancestor HEAD origin/master) successfully finished
+2024-08-11 15:57:42,713 [shell_command.py:_check_proc_success()] - Command (git -C /home/nozzle/moonraker rev-parse HEAD) successfully finished
+2024-08-11 15:57:42,736 [shell_command.py:_check_proc_success()] - Command (git -C /home/nozzle/moonraker describe --always --tags --long --dirty --abbrev=8) successfully finished
+2024-08-11 15:57:42,757 [shell_command.py:_check_proc_success()] - Command (git -C /home/nozzle/moonraker rev-parse origin/master) successfully finished
+2024-08-11 15:57:42,779 [shell_command.py:_check_proc_success()] - Command (git -C /home/nozzle/moonraker describe origin/master --always --tags --long --abbrev=8) successfully finished
+2024-08-11 15:57:42,797 [shell_command.py:_check_proc_success()] - Command (git -C /home/nozzle/moonraker rev-list HEAD..f735c0419444848b59342a98ad3532eef123ea46 --count) successfully finished
+2024-08-11 15:57:42,798 [git_deploy.py:log_repo_info()] - Git Repo moonraker Detected:
+Owner: Arksine
+Repository Name: moonraker
+Path: /home/nozzle/moonraker
+Remote: origin
+Branch: master
+Remote URL: https://github.com/Arksine/moonraker.git
+Recovery URL: https://github.com/Arksine/moonraker.git
+Current Commit SHA: f735c0419444848b59342a98ad3532eef123ea46
+Upstream Commit SHA: f735c0419444848b59342a98ad3532eef123ea46
+Current Version: v0.9.2-6-gf735c041
+Upstream Version: v0.9.2-6-gf735c041
+Rollback Commit: f735c0419444848b59342a98ad3532eef123ea46
+Rollback Branch: master
+Rollback Version: v0.9.2-6-gf735c041
+Is Dirty: False
+Is Detached: False
+Is Shallow: False
+Commits Behind Count: 0
+Diverged: False
+Pinned Commit: None
+2024-08-11 15:57:42,798 [base_deploy.py:log_info()] - Git Repo moonraker: Channel: dev
+2024-08-11 15:57:42,798 [base_deploy.py:log_info()] - Git Repo moonraker: Validity check for git repo passed
+2024-08-11 15:57:42,842 [shell_command.py:_check_proc_success()] - Command (git -C /home/nozzle/klipper status --porcelain -b) successfully finished
+2024-08-11 15:57:42,860 [shell_command.py:_check_proc_success()] - Command (git -C /home/nozzle/klipper branch --list --no-color) successfully finished
+2024-08-11 15:57:42,898 [shell_command.py:_check_proc_success()] - Command (git -C /home/nozzle/klipper remote get-url origin) successfully finished
+2024-08-11 15:57:43,306 [shell_command.py:_check_proc_success()] - Command (git -C /home/nozzle/klipper fetch origin --prune --progress) successfully finished
+2024-08-11 15:57:43,324 [shell_command.py:_check_proc_success()] - Command (git -C /home/nozzle/klipper merge-base --is-ancestor HEAD origin/master) successfully finished
+2024-08-11 15:57:43,341 [shell_command.py:_check_proc_success()] - Command (git -C /home/nozzle/klipper rev-parse HEAD) successfully finished
+2024-08-11 15:57:43,478 [shell_command.py:_check_proc_success()] - Command (git -C /home/nozzle/klipper describe --always --tags --long --dirty --abbrev=8) successfully finished
+2024-08-11 15:57:43,499 [shell_command.py:_check_proc_success()] - Command (git -C /home/nozzle/klipper rev-parse origin/master) successfully finished
+2024-08-11 15:57:43,645 [shell_command.py:_check_proc_success()] - Command (git -C /home/nozzle/klipper describe origin/master --always --tags --long --abbrev=8) successfully finished
+2024-08-11 15:57:43,676 [shell_command.py:_check_proc_success()] - Command (git -C /home/nozzle/klipper rev-list HEAD..ca815f52c8420225f93f90698768a5c4714654a9 --count) successfully finished
+2024-08-11 15:57:43,682 [git_deploy.py:log_repo_info()] - Git Repo klipper Detected:
+Owner: Klipper3d
+Repository Name: klipper
+Path: /home/nozzle/klipper
+Remote: origin
+Branch: master
+Remote URL: https://github.com/Klipper3d/klipper
+Recovery URL: https://github.com/Klipper3d/klipper
+Current Commit SHA: ca815f52c8420225f93f90698768a5c4714654a9
+Upstream Commit SHA: ca815f52c8420225f93f90698768a5c4714654a9
+Current Version: v0.12.0-276-gca815f52
+Upstream Version: v0.12.0-276-gca815f52
+Rollback Commit: ca815f52c8420225f93f90698768a5c4714654a9
+Rollback Branch: master
+Rollback Version: v0.12.0-276-gca815f52
+Is Dirty: False
+Is Detached: False
+Is Shallow: False
+Commits Behind Count: 0
+Diverged: False
+Pinned Commit: None
+2024-08-11 15:57:43,683 [base_deploy.py:log_info()] - Git Repo klipper: Channel: dev
+2024-08-11 15:57:43,683 [base_deploy.py:log_info()] - Git Repo klipper: Validity check for git repo passed
+2024-08-11 15:57:50,342 [klippy_connection.py:_request_initial_subscriptions()] - Webhooks Subscribed
+2024-08-11 15:57:50,344 [klippy_connection.py:_request_initial_subscriptions()] - GCode Output Subscribed
+2024-08-11 15:57:50,347 [klippy_connection.py:_check_ready()] - 
+mcu 'mcu': Unable to connect
+Once the underlying issue is corrected, use the
+"FIRMWARE_RESTART" command to reset the firmware, reload the
+config, and restart the host software.
+Error configuring printer
+
+2024-08-11 16:00:00,654 [machine.py:_find_public_ip()] - Detected Local IP: 192.168.1.6
+2024-08-11 16:00:10,674 [machine.py:_find_public_ip()] - Detected Local IP: 192.168.1.6
+2024-08-11 16:01:40,804 [machine.py:_find_public_ip()] - Detected Local IP: 192.168.1.6
+2024-08-11 16:01:50,823 [machine.py:_find_public_ip()] - Detected Local IP: 192.168.1.6
+2024-08-11 16:04:21,531 [authorization.py:_check_trusted_connection()] - Trusted Connection Detected, IP: 192.168.1.114
+2024-08-11 16:04:22,747 [application.py:log_request()] - 404 GET /server/database/item?namespace=fluidd (192.168.1.114) [_TRUSTED_USER_] 13.18ms
+2024-08-11 16:04:22,926 [application.py:log_request()] - 101 GET /websocket?token=DYKINGTVDQI6LZ6KB3CFJFAACXFATBEE (192.168.1.114) [_TRUSTED_USER_] 1.84ms
+2024-08-11 16:04:22,926 [websockets.py:open()] - Websocket Opened: ID: 3011170112, Proxied: False, User Agent: Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/127.0.0.0 Safari/537.36, Host Name: printfarm.local
+2024-08-11 16:04:22,932 [websockets.py:_handle_identify()] - Websocket 3011170112 Client Identified - Name: fluidd, Version: 1.30.1-62fe404, Type: web
+2024-08-11 16:04:22,932 [file_manager.py:get_file_list()] - Updating File List <config>...
+2024-08-11 16:04:28,378 [klippy_connection.py:close()] - Error closing Klippy Unix Socket
+Traceback (most recent call last):
+  File "/home/nozzle/moonraker/moonraker/components/klippy_connection.py", line 802, in close
+    await self.writer.wait_closed()
+  File "/usr/lib/python3.9/asyncio/streams.py", line 359, in wait_closed
+    await self._protocol._get_close_waiter(self)
+  File "/home/nozzle/moonraker/moonraker/components/klippy_connection.py", line 191, in _read_stream
+    data = await reader.readuntil(b'\x03')
+  File "/usr/lib/python3.9/asyncio/streams.py", line 632, in readuntil
+    await self._wait_for_data('readuntil')
+  File "/usr/lib/python3.9/asyncio/streams.py", line 517, in _wait_for_data
+    await self._waiter
+  File "/usr/lib/python3.9/asyncio/selector_events.py", line 856, in _read_ready__data_received
+    data = self._sock.recv(self.max_size)
+ConnectionResetError: [Errno 104] Connection reset by peer
+2024-08-11 16:04:28,379 [klippy_connection.py:_on_connection_closed()] - Klippy Connection Removed
+2024-08-11 16:04:28,382 [common.py:build_error()] - JSON-RPC Request Error - Requested Method: printer.info, Code: 503, Message: Klippy Disconnected
+2024-08-11 16:04:28,396 [common.py:build_error()] - JSON-RPC Request Error - Requested Method: printer.info, Code: 503, Message: Klippy Host not connected
+2024-08-11 16:04:28,635 [klippy_connection.py:_do_connect()] - Klippy Connection Established
+2024-08-11 16:04:28,674 [machine.py:extract_service_info()] - Detected alternate unit name for klipper: klipper-mikasa.service
+2024-08-11 16:04:28,698 [server.py:add_log_rollover_item()] - 
+Systemd unit klipper-mikasa.service:
+unit_name: klipper-mikasa.service
+is_default: False
+manager: systemd
+Properties:
+**Requires=['system.slice', '-.mount', 'sysinit.target']
+**After=['basic.target', '-.mount', 'network-online.target', 'system.slice', 'systemd-journald.socket', 'sysinit.target']
+**SupplementaryGroups=[]
+**EnvironmentFiles=/home/nozzle/mikasa_data/systemd/klipper.env
+**ExecStart=/home/nozzle/klippy-env/bin/python $KLIPPER_ARGS
+**WorkingDirectory=/home/nozzle/klipper
+**FragmentPath=/etc/systemd/system/klipper-mikasa.service
+**Description=Klipper 3D Printer Firmware SV1
+**User=nozzle
+2024-08-11 16:05:19,404 [websockets.py:on_close()] - Websocket Closed: ID: 3011170112 Close Code: None, Close Reason: None, Pong Time Elapsed: 6.47
+2024-08-11 16:05:58,586 [klippy_connection.py:_request_initial_subscriptions()] - Webhooks Subscribed
+2024-08-11 16:05:58,589 [klippy_connection.py:_request_initial_subscriptions()] - GCode Output Subscribed
+2024-08-11 16:05:58,595 [klippy_connection.py:_check_ready()] - 
+mcu 'mcu': Unable to connect
+Once the underlying issue is corrected, use the
+"FIRMWARE_RESTART" command to reset the firmware, reload the
+config, and restart the host software.
+Error configuring printer
+
+2024-08-11 16:08:41,353 [machine.py:_find_public_ip()] - Detected Local IP: 192.168.1.6
+2024-08-11 16:13:41,795 [machine.py:_find_public_ip()] - Detected Local IP: 192.168.1.6
+2024-08-11 16:14:21,862 [machine.py:_find_public_ip()] - Detected Local IP: 192.168.1.6
+2024-08-11 16:14:52,412 [application.py:log_request()] - 101 GET /websocket?token=ZQ4U5V7XRLX2QHO2SASN2TQ4T5TDRACP (192.168.1.114) [_TRUSTED_USER_] 2.83ms
+2024-08-11 16:14:52,414 [websockets.py:open()] - Websocket Opened: ID: 3001017560, Proxied: False, User Agent: Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/127.0.0.0 Safari/537.36, Host Name: printfarm.local
+2024-08-11 16:14:52,421 [websockets.py:_handle_identify()] - Websocket 3001017560 Client Identified - Name: fluidd, Version: 1.30.1-62fe404, Type: web
+2024-08-11 16:14:52,422 [file_manager.py:get_file_list()] - Updating File List <config>...
+2024-08-11 16:15:31,981 [machine.py:_find_public_ip()] - Detected Local IP: 192.168.1.6
+2024-08-11 16:15:41,998 [machine.py:_find_public_ip()] - Detected Local IP: 192.168.1.6
+2024-08-11 16:16:17,914 [klippy_connection.py:_on_connection_closed()] - Klippy Connection Removed
+2024-08-11 16:16:17,934 [common.py:build_error()] - JSON-RPC Request Error - Requested Method: printer.info, Code: 503, Message: Klippy Host not connected
+2024-08-11 16:16:19,173 [klippy_connection.py:_do_connect()] - Klippy Connection Established
+2024-08-11 16:16:19,241 [machine.py:extract_service_info()] - Detected alternate unit name for klipper: klipper-mikasa.service
+2024-08-11 16:16:20,032 [klippy_connection.py:_request_initial_subscriptions()] - Webhooks Subscribed
+2024-08-11 16:16:20,035 [klippy_connection.py:_request_initial_subscriptions()] - GCode Output Subscribed
+2024-08-11 16:16:20,283 [job_state.py:_handle_started()] - Job state initialized: standby
+2024-08-11 16:16:20,286 [klippy_connection.py:_verify_klippy_requirements()] - 
+Warning, unable to detect the following printer objects:
+[pause_resume], [display_status]
+Please add the the above sections to printer.cfg for full Moonraker functionality.
+2024-08-11 16:16:20,544 [klippy_connection.py:_check_ready()] - Klippy ready
+2024-08-11 16:16:20,786 [data_store.py:_init_sensors()] - No sensors found
+2024-08-11 16:17:55,089 [klippy_connection.py:_on_connection_closed()] - Klippy Connection Removed
+2024-08-11 16:17:55,125 [common.py:build_error()] - JSON-RPC Request Error - Requested Method: printer.info, Code: 503, Message: Klippy Host not connected
+2024-08-11 16:17:56,350 [klippy_connection.py:_do_connect()] - Klippy Connection Established
+2024-08-11 16:17:56,427 [machine.py:extract_service_info()] - Detected alternate unit name for klipper: klipper-mikasa.service
+2024-08-11 16:17:56,707 [klippy_connection.py:_request_initial_subscriptions()] - Webhooks Subscribed
+2024-08-11 16:17:56,709 [klippy_connection.py:_request_initial_subscriptions()] - GCode Output Subscribed
+2024-08-11 16:17:56,711 [klippy_connection.py:_check_ready()] - 
+Include file '/home/nozzle/mikasa_data/config/mainsail.cfg' does not exist
+
+Once the underlying issue is corrected, use the "RESTART"
+command to reload the config and restart the host software.
+Printer is halted
+
+2024-08-11 16:18:11,054 [klippy_connection.py:_on_connection_closed()] - Klippy Connection Removed
+2024-08-11 16:18:11,079 [common.py:build_error()] - JSON-RPC Request Error - Requested Method: machine.services.restart, Code: 400, Message: Service 'klipper' not allowed
+2024-08-11 16:18:11,094 [common.py:build_error()] - JSON-RPC Request Error - Requested Method: printer.info, Code: 503, Message: Klippy Host not connected
+2024-08-11 16:18:12,312 [klippy_connection.py:_do_connect()] - Klippy Connection Established
+2024-08-11 16:18:12,354 [machine.py:extract_service_info()] - Detected alternate unit name for klipper: klipper-mikasa.service
+2024-08-11 16:18:12,639 [klippy_connection.py:_request_initial_subscriptions()] - Webhooks Subscribed
+2024-08-11 16:18:12,643 [klippy_connection.py:_request_initial_subscriptions()] - GCode Output Subscribed
+2024-08-11 16:18:12,645 [klippy_connection.py:_check_ready()] - 
+Source contains parsing errors: '/home/nozzle/mikasa_data/config/printer.cfg'
+	[line 342]: 'BED_MESH_CLEAR\n'
+	[line 343]: 'BASE_BED_MESH_CALIBRATE\n'
+	[line 410]: 'M140 S80 ; start heating bed to 80ºc\n'
+	[line 411]: 'G28 ; home\n'
+	[line 412]: 'Tram_Z ; tram z aka calibrate z\n'
+	[line 414]: 'M190 S80 ; wait for bed to reach 80ºc\n'
+	[line 415]: 'G4 P300000 ; Waits 5 min for the bed temp to stabilize\n'
+	[line 422]: 'G1 X180 Y199 Z50 F1000\n'
+	[line 423]: 'M190 S0 ; turn off bed heater\n'
+	[line 424]: 'M117 !! ATTENTION BED IS HOT !!\n'
+	[line 426]: 'M117 remove pei sheet\n'
+	[line 428]: 'M117 adjust bed screws\n'
+	[line 437]: 'ADJUST_BED_SCREWS\n'
+	[line 441]: 'M117 Bed leveling\n'
+	[line 442]: 'BED_MESH_CALIBRATE\n'
+	[line 443]: 'G1 X0 Y0 Z0.4 F4000\n'
+	[line 444]: 'M117\n'
+	[line 445]: 'M400\n'
+	[line 449]: 'BED_MESH_OUTPUT\n'
+	[line 463]: 'M118 Filament Runout Detected\n'
+	[line 464]: 'M600\n'
+	[line 467]: 'M118 Filament Load Detected\n'
+	[line 468]: 'LOAD_FILAMENT\n'
+	[line 490]: 'PAUSE\n'
+	[line 491]: 'G91\n'
+	[line 492]: 'G1 E-.8 F2700\n'
+	[line 493]: 'G1 Z{Z}\n'
+	[line 494]: 'G90\n'
+	[line 495]: 'G1 X{X} Y{Y} F3000\n'
+	[line 496]: 'G91\n'
+	[line 497]: 'G1 E-50 F1000\n'
+	[line 503]: 'G91\n'
+	[line 505]: 'M117 Heating...\n'
+	[line 507]: 'M109 S{params.TEMP|default(220, true)}\n'
+	[line 508]: '{% endif %}\n'
+	[line 509]: 'M117 Unloading filament...\n'
+	[line 510]: 'G92 E0.0\n'
+	[line 511]: 'G91\n'
+	[line 512]: 'G1 E-45 F5000\n'
+	[line 513]: 'G1 E-15 F1000\n'
+	[line 514]: 'G1 E-20 F1000\n'
+	[line 515]: 'G90\n'
+	[line 516]: 'G92 E0.0\n'
+	[line 517]: 'M400\n'
+	[line 518]: 'M117 Remove Filament Now!\n'
+	[line 519]: 'M300 S300 P1000\n'
+	[line 520]: 'M117 Filament unloaded!\n'
+	[line 527]: 'G91\n'
+	[line 530]: 'M117 Heating...\n'
+	[line 531]: 'M109 S{params.TEMP|default(220, true)}\n'
+	[line 532]: '{% endif %}\n'
+	[line 533]: 'M117 Loading filament...\n'
+	[line 535]: 'G92 E0.0\n'
+	[line 536]: 'G91\n'
+	[line 537]: 'G1 E70 F400\n'
+	[line 538]: 'G1 E40 F100\n'
+	[line 539]: 'G90\n'
+	[line 540]: 'G92 E0.0\n'
+	[line 541]: 'M400\n'
+	[line 542]: 'M117 Filament loaded!\n'
+	[line 550]: 'M600\n'
+	[line 556]: 'RESUME\n'
+	[line 581]: 'CLEAR_PAUSE\n'
+	[line 590]: 'G4 P{P}\n'
+	[line 596]: 'M117\n'
+	[line 612]: '_TOOLHEAD_PARK_PAUSE_CANCEL\n'
+	[line 613]: '{% endif %}\n'
+	[line 614]: 'TURN_OFF_HEATERS\n'
+	[line 615]: 'CANCEL_PRINT_BASE\n'
+	[line 616]: 'SDCARD_RESET_FILE\n'
+	[line 618]: 'G1 Z60 F3000\n'
+	[line 619]: 'G90\n'
+	[line 621]: 'M84\n'
+	[line 627]: 'PAUSE_BASE\n'
+	[line 628]: '_TOOLHEAD_PARK_PAUSE_CANCEL\n'
+	[line 637]: "{% if 'VELOCITY' in params|upper %}\n"
+	[line 639]: '{%else %}\n'
+	[line 641]: '{% endif %}\n'
+	[line 644]: 'M83\n'
+	[line 645]: 'G1 E{extrude} F2100\n'
+	[line 647]: '{% else %}\n'
+	[line 648]: '{action_respond_info("Extruder not hot enough")}\n'
+	[line 649]: '{% endif %}\n'
+	[line 650]: 'RESUME_BASE {get_params}\n'
+	[line 651]: 'CLEAR_PAUSE\n'
+	[line 665]: '{% if act_z < (max_z - z_park_delta) %}\n'
+	[line 667]: '{% else %}\n'
+	[line 669]: '{% endif %}\n'
+	[line 672]: 'M83\n'
+	[line 673]: 'G1 E-{extrude} F2100\n'
+	[line 675]: '{% else %}\n'
+	[line 676]: '{action_respond_info("Extruder not hot enough")}\n'
+	[line 677]: '{% endif %}\n'
+	[line 678]: '{% if "xyz" in printer.toolhead.homed_axes %}\n'
+	[line 679]: 'G91\n'
+	[line 680]: 'G1 Z{z_safe} F900\n'
+	[line 681]: 'G90\n'
+	[line 682]: 'G1 X{x_park} Y{y_park} F6000\n'
+	[line 684]: '{% else %}\n'
+	[line 685]: '{action_respond_info("Printer not homed")}\n'
+	[line 686]: '{% endif %}\n'
+	[line 693]: 'G28\n'
+	[line 694]: '{% endif %}\n'
+	[line 695]: 'G1 X20 Y0\n'
+	[line 696]: 'G1 Z{max_z-10} F2000 \n'
+	[line 698]: 'G1 Z{max_z-50} F2000 \n'
+	[line 699]: 'G28 Z \n'
+	[line 703]: 'Tram_Z\n'
+	[line 710]: 'G34\n'
+	[line 715]: 'M140 S60\n'
+	[line 717]: 'M104 S200\n'
+	[line 722]: 'M140 S90\n'
+	[line 724]: 'M104 S240\n'
+	[line 729]: 'M140 S50\n'
+	[line 731]: 'M104 S190\n'
+	[line 740]: 'G28\n'
+	[line 741]: 'G90\n'
+	[line 742]: 'G1 X{max_x/2} Y{max_y/2} Z40 F6000\n'
+	[line 752]: 'G28\n'
+	[line 753]: 'G90\n'
+	[line 754]: 'G1 X{max_x/2} Y{max_y/2} Z10 F6000\n'
+	[line 755]: 'M106 S64\n'
+	[line 757]: 'M107 ; Turn off print cooling fan\n'
+	[line 761]: 'M117 Priming ...\n'
+	[line 762]: 'G92 E0.0 ; reset extruder\n'
+	[line 763]: 'G90 ; Absolute positioning\n'
+	[line 764]: 'G0 X5 Y-3.0 F5000 ; Moves to starting point outside print area\n'
+	[line 765]: 'G0 Z0.4 F500 ; Raises Z to 0.4\n'
+	[line 766]: 'G91 ; Incremental positioning\n'
+	[line 767]: 'G92 E0.0 ; reset extruder position\n'
+	[line 768]: 'G90 ; Absolute positioning\n'
+	[line 769]: 'G1 X50.0 E8.0 F1000.0 ; start intro line\n'
+	[line 770]: 'G1 X90.0 E24.0 F1000.0 ; finish thicker\n'
+	[line 771]: 'G92 E0.0\n'
+	[line 772]: 'G90 ; Absolut position\n'
+	[line 786]: 'M73 P0 ; clear LCD progress bar\n'
+	[line 787]: 'M82 ; extruder to absolute mode\n'
+	[line 788]: 'G92 E0 ; set extruder to zero\n'
+	[line 789]: 'M140 S{bed} ; get bed heating up\n'
+	[line 790]: 'M117 Bed Heating and Homing\n'
+	[line 791]: 'G28 ; home all axis\n'
+	[line 792]: 'G90 ; absolute positioning\n'
+	[line 793]: 'M190 S{bed} ; wait for bed temp\n'
+	[line 794]: 'G4 P300000 ; Waits 5 min for the bed temp to stabilize\n'
+	[line 797]: 'G80 ; bed leveling and bed mesh calibration\n'
+	[line 798]: 'M117 Leveling\n'
+	[line 802]: 'M107 ; Turns off the PT-fan\n'
+	[line 803]: 'M104 S{hotend} ; set extruder temp\n'
+	[line 804]: 'M109 S{hotend} ; wait for extruder temp\n'
+	[line 805]: 'M117 Hotend Heating\n'
+	[line 806]: 'PURGE_LINE; ; execute macro purge line\n'
+	[line 807]: 'M400 ; clear buffer\n'
+	[line 808]: 'M117 Printing...\n'
+	[line 814]: 'M400 ; wait for buffer to clear\n'
+	[line 815]: 'G92 E0 ; zero the extruder\n'
+	[line 816]: 'G1 F1000.0 ; set feed rate\n'
+	[line 817]: 'G1 E-3 ; retract\n'
+	[line 818]: 'G91 ; relative positioning\n'
+	[line 832]: '{% if printer.toolhead.position.x < (max_x - 20) %}\n'
+	[line 834]: '{% else %}\n'
+	[line 836]: '{% endif %}\n'
+	[line 838]: '{% if printer.toolhead.position.y < (max_y - 20) %}\n'
+	[line 840]: '{% else %}\n'
+	[line 842]: '{% endif %}\n'
+	[line 845]: '{% if printer.toolhead.position.z < (max_z - lift_height) %}\n'
+	[line 847]: '{% else %}\n'
+	[line 849]: '{% endif %}\n'
+	[line 851]: 'G0 Z{z_safe} F{zVelocityAdjusted} ; move nozzle up\n'
+	[line 852]: 'G0 X{x_safe} Y{y_safe} F{maxVelocityAdjusted} ; move nozzle to remove stringing\n'
+	[line 853]: 'TURN_OFF_HEATERS ; turn off heaters\n'
+	[line 854]: 'M107 ; turn off fan\n'
+	[line 855]: 'G90 ; absolute positioning\n'
+	[line 856]: 'G0 X60 Y{max_y} F3600 ; park nozzle at rear\n'
+	[line 857]: 'M221 S100 ; Reset Filament Flowrate\n'
+	[line 858]: 'M84XYE ; disable xye motors\n'
+	[line 859]: 'M117 Printer Ready ; LCD status message\n'
+	[line 864]: 'G91\n'
+	[line 865]: 'G1 X-2 Y-2 E-1 F300\n'
+	[line 866]: 'G1 Z50 F3000 ; Raise nozzle by 50mm\n'
+	[line 867]: 'G90\n'
+	[line 868]: 'TURN_OFF_HEATERS\n'
+	[line 869]: 'M107\n'
+	[line 870]: 'CLEAR_PAUSE\n'
+	[line 871]: 'SDCARD_RESET_FILE\n'
+	[line 872]: 'BASE_CANCEL_PRINT\n'
+	[line 873]: 'CUSTOM_PRINT_CANCELED\n'
+	[line 877]: 'M117 Print canceled\n'
+
+Once the underlying issue is corrected, use the "RESTART"
+command to reload the config and restart the host software.
+Printer is halted
+
+2024-08-11 16:22:32,577 [machine.py:_find_public_ip()] - Detected Local IP: 192.168.1.6
+2024-08-11 16:23:53,689 [klippy_connection.py:_on_connection_closed()] - Klippy Connection Removed
+2024-08-11 16:23:53,711 [common.py:build_error()] - JSON-RPC Request Error - Requested Method: printer.info, Code: 503, Message: Klippy Host not connected
+2024-08-11 16:23:53,753 [common.py:build_error()] - JSON-RPC Request Error - Requested Method: machine.services.restart, Code: 400, Message: Service 'klipper' not allowed
+2024-08-11 16:23:54,949 [klippy_connection.py:_do_connect()] - Klippy Connection Established
+2024-08-11 16:23:55,004 [machine.py:extract_service_info()] - Detected alternate unit name for klipper: klipper-mikasa.service
+2024-08-11 16:23:55,286 [klippy_connection.py:_request_initial_subscriptions()] - Webhooks Subscribed
+2024-08-11 16:23:55,291 [klippy_connection.py:_request_initial_subscriptions()] - GCode Output Subscribed
+2024-08-11 16:23:55,294 [klippy_connection.py:_check_ready()] - 
+Source contains parsing errors: '/home/nozzle/mikasa_data/config/printer.cfg'
+	[line 550]: 'M600\n'
+	[line 556]: 'RESUME\n'
+
+Once the underlying issue is corrected, use the "RESTART"
+command to reload the config and restart the host software.
+Printer is halted
+
+2024-08-11 16:24:41,133 [klippy_connection.py:_on_connection_closed()] - Klippy Connection Removed
+2024-08-11 16:24:41,161 [common.py:build_error()] - JSON-RPC Request Error - Requested Method: printer.info, Code: 503, Message: Klippy Host not connected
+2024-08-11 16:24:42,393 [klippy_connection.py:_do_connect()] - Klippy Connection Established
+2024-08-11 16:24:42,437 [machine.py:extract_service_info()] - Detected alternate unit name for klipper: klipper-mikasa.service
+2024-08-11 16:24:43,202 [klippy_connection.py:_request_initial_subscriptions()] - Webhooks Subscribed
+2024-08-11 16:24:43,204 [klippy_connection.py:_request_initial_subscriptions()] - GCode Output Subscribed
+2024-08-11 16:24:43,207 [klippy_connection.py:_check_ready()] - 
+Section 'motor_constants prusa-xye' is not a valid config section
+
+Once the underlying issue is corrected, use the "RESTART"
+command to reload the config and restart the host software.
+Printer is halted
+
+2024-08-11 16:29:23,989 [machine.py:_find_public_ip()] - Detected Local IP: 192.168.1.6
+2024-08-11 16:29:33,118 [machine.py:_find_public_ip()] - Detected Local IP: 192.168.1.6
+2024-08-11 16:33:38,170 [klippy_connection.py:_on_connection_closed()] - Klippy Connection Removed
+2024-08-11 16:33:38,204 [common.py:build_error()] - JSON-RPC Request Error - Requested Method: printer.info, Code: 503, Message: Klippy Host not connected
+2024-08-11 16:33:39,180 [klippy_connection.py:_do_connect()] - Klippy Connection Established
+2024-08-11 16:33:39,278 [machine.py:extract_service_info()] - Detected alternate unit name for klipper: klipper-mikasa.service
+2024-08-11 16:33:40,228 [server.py:add_log_rollover_item()] - Klipper Version: v0.12.0-276-gca815f52-dirty
+2024-08-11 16:33:41,512 [klippy_connection.py:close()] - Error closing Klippy Unix Socket
+Traceback (most recent call last):
+  File "/home/nozzle/moonraker/moonraker/components/klippy_connection.py", line 802, in close
+    await self.writer.wait_closed()
+  File "/usr/lib/python3.9/asyncio/streams.py", line 359, in wait_closed
+    await self._protocol._get_close_waiter(self)
+  File "/home/nozzle/moonraker/moonraker/components/klippy_connection.py", line 191, in _read_stream
+    data = await reader.readuntil(b'\x03')
+  File "/usr/lib/python3.9/asyncio/streams.py", line 632, in readuntil
+    await self._wait_for_data('readuntil')
+  File "/usr/lib/python3.9/asyncio/streams.py", line 517, in _wait_for_data
+    await self._waiter
+  File "/usr/lib/python3.9/asyncio/selector_events.py", line 856, in _read_ready__data_received
+    data = self._sock.recv(self.max_size)
+ConnectionResetError: [Errno 104] Connection reset by peer
+2024-08-11 16:33:41,512 [klippy_connection.py:_on_connection_closed()] - Klippy Connection Removed
+2024-08-11 16:33:41,527 [common.py:build_error()] - JSON-RPC Request Error - Requested Method: printer.info, Code: 503, Message: Klippy Host not connected
+2024-08-11 16:33:42,772 [klippy_connection.py:_do_connect()] - Klippy Connection Established
+2024-08-11 16:33:42,813 [machine.py:extract_service_info()] - Detected alternate unit name for klipper: klipper-mikasa.service
+2024-08-11 16:33:45,216 [klippy_connection.py:_request_initial_subscriptions()] - Webhooks Subscribed
+2024-08-11 16:33:45,219 [klippy_connection.py:_request_initial_subscriptions()] - GCode Output Subscribed
+2024-08-11 16:33:45,467 [job_state.py:_handle_started()] - Job state initialized: standby
+2024-08-11 16:33:45,726 [server.py:add_warning()] - GCode path received from Klipper does not match expected location.
+
+Received: '/home/nozzle/printer_data/gcodes'
+Expected: '/home/nozzle/mikasa_data/gcodes'
+
+Modify the [virtual_sdcard] section Klipper's configuration to correct this error.
+
+[virtual_sdcard]
+path: /home/nozzle/mikasa_data/gcodes
+2024-08-11 16:33:45,739 [klippy_connection.py:_check_ready()] - Klippy ready
+2024-08-11 16:33:46,223 [data_store.py:_init_sensors()] - Configuring available sensors: ['temperature_sensor einsy_board', 'temperature_sensor raspberry_pi', 'heater_bed', 'extruder']
+2024-08-11 16:36:20,887 [klippy_connection.py:_on_connection_closed()] - Klippy Connection Removed
+2024-08-11 16:36:20,925 [common.py:build_error()] - JSON-RPC Request Error - Requested Method: printer.info, Code: 503, Message: Klippy Host not connected
+2024-08-11 16:36:22,147 [klippy_connection.py:_do_connect()] - Klippy Connection Established
+2024-08-11 16:36:22,192 [machine.py:extract_service_info()] - Detected alternate unit name for klipper: klipper-mikasa.service
+2024-08-11 16:36:23,570 [machine.py:_find_public_ip()] - Detected Local IP: 192.168.1.6
+2024-08-11 16:36:24,553 [klippy_connection.py:_request_initial_subscriptions()] - Webhooks Subscribed
+2024-08-11 16:36:24,555 [klippy_connection.py:_request_initial_subscriptions()] - GCode Output Subscribed
+2024-08-11 16:36:24,804 [job_state.py:_handle_started()] - Job state initialized: standby
+2024-08-11 16:36:25,075 [klippy_connection.py:_check_ready()] - Klippy ready
+2024-08-11 16:36:25,556 [data_store.py:_init_sensors()] - Configuring available sensors: ['temperature_sensor einsy_board', 'temperature_sensor raspberry_pi', 'heater_bed', 'extruder']
+2024-08-11 16:36:33,603 [machine.py:_find_public_ip()] - Detected Local IP: 192.168.1.6
+2024-08-11 16:36:55,394 [websockets.py:on_close()] - Websocket Closed: ID: 3001017560 Close Code: None, Close Reason: None, Pong Time Elapsed: 2.97
