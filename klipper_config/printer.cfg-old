@@ -171,65 +171,40 @@ gcode:
 [gcode_macro START_PRINT_PLA]
 # gcode offset now set in sheets variable
 gcode:
-   {action_respond_info(
-        "Request to print with:\n"
-        "\tExtruder Temp: %d\n"
-        "\tBed Temp: %d\n" % (params.EXTRUDER_TEMP|int, params.BED_TEMP|int)
-    )}
-    {% set GCODE_OFFSET = params.GCODE_OFFSET|default(-0.07) %}
+    {% set GCODE_OFFSET = params.GCODE_OFFSET|default(-1.140) %}
     LOAD_SHEET SHEET_NAME=Smooth_PLA
-    START_PRINT BED_TEMP={params.BED_TEMP} EXTRUDER_TEMP={params.EXTRUDER_TEMP} FILAMENT_TYPE=PLA
+    START_PRINT BED_TEMP={BED_TEMP} EXTRUDER_TEMP={EXTRUDER_TEMP}
 
 [gcode_macro START_PRINT_PETG]
 # gcode offset now set in sheets variable
 gcode:
-    {action_respond_info(
-        "Request to print with:\n"
-        "\tExtruder Temp: %d\n"
-        "\tBed Temp: %d\n" % (params.EXTRUDER_TEMP, params.BED_TEMP)
-    )}
     {% set GCODE_OFFSET = params.GCODE_OFFSET|default(-0.950) %}
     LOAD_SHEET SHEET_NAME=Texture_PETG
-    START_PRINT BED_TEMP={params.BED_TEMP} EXTRUDER_TEMP={params.EXTRUDER_TEMP} FILAMENT_TYPE=PETG
+    START_PRINT BED_TEMP={BED_TEMP} EXTRUDER_TEMP={EXTRUDER_TEMP}
 
 [gcode_macro START_PRINT]
 gcode:
-    {action_respond_info('|%s| |%s| |%d| |%d|' % (params.BED_TEMP, params.EXTRUDER_TEMP, params.BED_TEMP|int, params.EXTRUDER_TEMP|int))}
-    {% set BED_TEMP = params.BED_TEMP|default(60)|int %}
-    {% set EXTRUDER_TEMP = params.EXTRUDER_TEMP|default(215)|int %}
-    {% set FIRST_LAYER_HEIGHT = params.FIRST_LAYER_HEIGHT|default(0.35)|int %}    # Set extruder relative
-    {% set FILAMENT_TYPE = params.FILAMENT_TYPE %}
-    {% set BED_MAXIMUM = BED_TEMP + 3 %}
-    {% set EXTRUDER_MAXIMUM = EXTRUDER_TEMP + 1 %}
+    {% set BED_TEMP = params.BED_TEMP|default(60) %}
+    {% set EXTRUDER_TEMP = params.EXTRUDER_TEMP|default(215) %}
+    {% set FIRST_LAYER_HEIGHT = params.FIRST_LAYER_HEIGHT|default(0.35) %}    # Set extruder relative
     M83
-    {action_respond_info(
-        "Filament Type: %s\n"
-        "Bed Temperature: %d-%d\n"
-        "Extruder Temperature: %d-%d\n" % (
-            FILAMENT_TYPE,
-            BED_TEMP,
-            BED_MAXIMUM,
-            EXTRUDER_TEMP,
-            EXTRUDER_MAXIMUM
-        )
-    )}
     # Start nozzle heating
-    SET_HEATER_TEMPERATURE HEATER=extruder TARGET={EXTRUDER_TEMP}
+    M104 S{EXTRUDER_TEMP}
     # Start bed heating
-    SET_HEATER_TEMPERATURE HEATER=heater_bed TARGET={BED_TEMP}
+    M140 S{BED_TEMP}
     # Use absolute coordinates
     G90
     # Reset the G-Code Z offset (adjust Z offset if needed)
     # gcode offset now set in sheets variable; use LOAD_SHEET
-    # before printing||nint
+    # before printing
     # SET_GCODE_OFFSET Z={GCODE_OFFSET}
     # Home the printer
     G28
-     # Wait for bed to reach temperature using 3deg tolerance due to bed slightly overheating
-    TEMPERATURE_WAIT SENSOR=heater_bed MINIMUM={BED_TEMP} MAXIMUM={BED_MAXIMUM}
-    TEMPERATURE_WAIT SENSOR=extruder MINIMUM={EXTRUDER_TEMP} MAXIMUM={EXTRUDER_MAXIMUM}
+     # Wait for bed to reach temperature
+    M190 S{BED_TEMP}
     #BED_MESH_PROFILE LOAD=default
     # Set and wait for nozzle to reach temperature
+    M109 S{EXTRUDER_TEMP}
     G92 E0.0
     # go outside print area for purge
     G1 Y-3.0 X5 Z0.6 F1000.0
@@ -237,28 +212,14 @@ gcode:
     G1 Z{FIRST_LAYER_HEIGHT} X100.0 E12.5 F1000.0
     G92 E0.0
     M400
-    M117 Hange Printing...
+    M117 Mikasa Printing...
     
-[gcode_macro TEST_HEATING_RANGE]
-gcode:
-    {% set ET = params.ET|int %}
-    {% set BT = params.BT|int %}
-    {% set ETM = ET + 1 %}
-    {% set BTM = BT + 3 %}
 
-    {action_respond_info('ET=' ~ ET ~ ', BT=' ~ BT ~ ', ETM=' ~ ETM ~ ', BTM=' ~ BTM)}
-    SET_HEATER_TEMPERATURE HEATER=extruder TARGET={ET}
-    SET_HEATER_TEMPERATURE HEATER=heater_bed TARGET={BT}
-    {action_respond_info('set bed & extruder temps')}
-
-    TEMPERATURE_WAIT SENSOR=heater_bed MINIMUM={BT} MAXIMUM={BTM}
-    TEMPERATURE_WAIT SENSOR=extruder MINIMUM={ET} MAXIMUM={ETM}
-    {action_respond_info('all done!')}
-    
 [gcode_macro END_PRINT]
 gcode:
     M400                        ; clear buffer
-    TURN_OFF_HEATERS
+    M104 S0                     ; turn off temperature
+    M140 S0                     ; turn off heatbed
     M107                        ; turn off fan
     G1 F1000.0                  ; set feed rate
     G1 E-3                      ; retract
@@ -343,8 +304,6 @@ axes: Z
 set_position_x: 0
 set_position_y: 0
 set_position_z: 0
-
-[exclude_object]
 
 [menu __main __quick]
 type: list
@@ -465,33 +424,14 @@ min_temp: 0
 max_temp: 130
 
 [bed_mesh]
-algorithm: bicubic
-fade_end: 10.0
-faulty_region_1_min: 100.583, 187.376
-faulty_region_1_max: 122.083, 229.376
-faulty_region_2_min: 125.672, -18.124
-faulty_region_2_max: 147.172, 23.876
-faulty_region_3_min: 192.261, 5.126
-faulty_region_3_max: 234.261, 26.626
-faulty_region_4_min: 114.422, 39.876
-faulty_region_4_max: 135.922, 81.876
-faulty_region_5_min: 21.422, 87.126
-faulty_region_5_max: 42.922, 129.126
-faulty_region_6_min: 54.172, 97.376
-faulty_region_6_max: 96.172, 118.876
-faulty_region_7_min: 154.172, 97.376
-faulty_region_7_max: 196.172, 118.876
-faulty_region_8_min: 205.136, 87.126
-faulty_region_8_max: 226.636, 129.126
-faulty_region_9_min: 114.422, 134.376
-faulty_region_9_max: 135.922, 176.376
-faulty_region_10_min: 176.177, 191.394
-faulty_region_10_max: 218.177, 212.894
-speed: 120
-mesh_min: 24, 6
-mesh_max: 228,210
-mesh_pps: 3
+speed: 100
+mesh_min: 35, 6
+mesh_max: 240,198
 probe_count: 6,6
+mesh_pps: 3,2
+algorithm: bicubic
+fade_start: 0.6
+fade_end: 10.0
 
 # [bed_tilt]
 # points: 
@@ -522,19 +462,16 @@ fan_speed: 1.0
 pin: P1.27
 x_offset: 24
 y_offset: 5
-
-# Set from https://github.com/dz0ny/klipper-prusa-mk3s/blob/59a057cda3730df710119d7c6feae1ccaeb2c5b8/mk3s/einsy-rambo.cfg
-speed: 20
-samples: 3
-sample_retract_dist: 1.0
+#z_offset: 0
 
 [mcu]
-serial: /dev/serial/by-id/usb-Klipper_lpc1769_0CF0FF1868944BAF6CC57D5DC32000F5-if00
+serial: /dev/ttyACM1
 
 [printer]
 kinematics: cartesian
 max_velocity: 400
 max_accel: 3500
+max_accel_to_decel: 7000
 max_z_velocity: 10
 max_z_accel: 200
 
@@ -572,7 +509,7 @@ pin: EXP1_1
 
 # Required for Fluidd
 [virtual_sdcard]
-path: /home/nozzle/printer_data/gcodes
+path: /home/nozzle/gcode_files
 
 [display_status]
 
@@ -583,6 +520,26 @@ filename: /home/nozzle/klipper_config/config.d/variables.cfg
 
 #*# <---------------------- SAVE_CONFIG ---------------------->
 #*# DO NOT EDIT THIS BLOCK OR BELOW. The contents are auto-generated.
+#*#
+#*# [bed_mesh default]
+#*# version = 1
+#*# points =
+#*# 	  -0.451250, -0.385000, -0.153750, -0.193750, -0.173750, -0.026250
+#*# 	  -0.301250, -0.143750, -0.077500, -0.010000, 0.012500, 0.186250
+#*# 	  -0.233750, -0.102500, -0.002500, 0.041250, 0.092500, 0.246250
+#*# 	  -0.076250, -0.107500, 0.086250, 0.063750, 0.120000, 0.191250
+#*# 	  -0.185000, -0.095000, 0.032500, 0.022500, 0.096250, 0.236250
+#*# 	  -0.186250, -0.126250, 0.041250, 0.052500, 0.028750, 0.176250
+#*# tension = 0.2
+#*# min_x = 35.0
+#*# algo = bicubic
+#*# y_count = 6
+#*# mesh_y_pps = 2
+#*# min_y = 6.0
+#*# x_count = 6
+#*# max_y = 198.0
+#*# mesh_x_pps = 3
+#*# max_x = 240.0
 #*#
 #*# [skew_correction hange_skew]
 #*# xy_skew = -0.0019864473196
@@ -614,25 +571,25 @@ filename: /home/nozzle/klipper_config/config.d/variables.cfg
 #*# [bed_mesh Smooth_PLA]
 #*# version = 1
 #*# points =
-#*# 	  -0.122917, -0.207917, -0.024583, 0.021806, 0.051250, 0.122083
-#*# 	  -0.217083, -0.225000, -0.122500, -0.060833, 0.032500, 0.187500
-#*# 	  -0.208056, -0.163750, -0.033333, -0.018333, -0.002500, 0.170000
-#*# 	  -0.218750, -0.207500, -0.071667, -0.065417, -0.006250, 0.200833
-#*# 	  -0.129167, -0.157500, -0.125417, -0.115000, -0.001667, 0.204583
-#*# 	  -0.112500, -0.151667, -0.001667, 0.007917, 0.039583, 0.315417
+#*# 	-0.080000, -0.101250, 0.080000, -0.052500, -0.101250, 0.080000
+#*# 	-0.016250, -0.063750, -0.071250, -0.067500, -0.052500, 0.115000
+#*# 	-0.026250, -0.040000, -0.011250, -0.041250, -0.045000, 0.126250
+#*# 	0.112500, -0.032500, 0.080000, -0.018750, -0.008750, 0.087500
+#*# 	0.026250, 0.000000, 0.063750, -0.073750, -0.022500, 0.133750
+#*# 	-0.001250, -0.022500, 0.036250, -0.046250, -0.057500, 0.123750
 #*# tension = 0.2
-#*# min_x = 24.0
+#*# min_x = 35.0
 #*# algo = bicubic
 #*# y_count = 6
-#*# mesh_y_pps = 3
+#*# mesh_y_pps = 2
 #*# min_y = 6.0
 #*# x_count = 6
-#*# max_y = 209.95
+#*# max_y = 198.0
 #*# mesh_x_pps = 3
-#*# max_x = 227.95
+#*# max_x = 240.0
 #*#
 #*# [probe]
-#*# z_offset = 0.450
+#*# z_offset = 0.950
 #*#
 #*# [heater_bed]
 #*# control = pid
